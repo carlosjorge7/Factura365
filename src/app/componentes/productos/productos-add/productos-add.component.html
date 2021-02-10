@@ -1,0 +1,94 @@
+<div id="productosadd" *ngIf="log">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <br>
+            <div class="card">
+                <div class="card-header" style="text-align: center;">
+                    Nuevo Producto
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="">ID Organización</label>
+                        <input type="text" #OrganizationID="ngModel" class="form-control" [(ngModel)]="pro.OrganizationID" readonly />
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                          <label for="">Nombre *</label>
+                          <input required type="text" [(ngModel)]="pro.ProductName" class="form-control" />
+                        </div>
+                        <div class="col">
+                          <label for="">Descripción </label>
+                          <input  type="text" [(ngModel)]="pro.ProductDescription" class="form-control"/>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                          <label for="">Precio de Venta  </label>
+                        <input type="text" [(ngModel)]="pro.ProductPriceSale"  class="form-control"/>
+                        </div>
+                        <div class="col">
+                          <label for="">Precio de Coste </label>
+                          <input type="text" [(ngModel)]="pro.ProductPriceCost"  class="form-control"/>
+                        </div>
+                      </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">Impuesto 1</label><button (click)="newImpuesto()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                            <select style="border-radius: 20px;" name="my-select" [(ngModel)]="myPercentaje" class="form-control" (change)="selectPercentage()">
+                                <option [value]="item.id" *ngFor="let item of impuestos">{{item.id}} - {{item.TaxName}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="">Impuesto 2</label><button (click)="newImpuesto()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                            <select style="border-radius: 20px;" name="my-select1" [(ngModel)]="myPercentaje1" class="form-control" (change)="selectPercentage1()">
+                                <option [value]="item.id" *ngFor="let item of impuestos1">{{item.id}} - {{item.TaxName}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                          <label for="">Categoría</label><button (click)="newCategoria()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                          <select style="border-radius: 20px;" name="my-select" [(ngModel)]="mySelect" class="form-control" (change)="selectChange()">
+                              <option [value]="item.id" *ngFor="let item of categorias">{{item.CategoryName}}</option>
+                          </select>
+                        </div>
+                    </div>
+                    <!-- El orden de los parametros en este caso da igual-->
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                          <label for="">Tasa</label>
+                          <input type="text" [(ngModel)]="pro.ProductTax3Rate"  class="form-control"/>
+                        </div>
+                        <div class="col">
+                          <label for="">Tipo</label>
+                          <input type="text" [(ngModel)]="pro.ProductType" class="form-control"/>
+                        </div>
+                      </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                          <label for="">Codigo</label>
+                          <input type="text" [(ngModel)]="pro.ProductCode"  class="form-control"/>
+                        </div>
+                        <div class="col">
+                          <label for="">Unidad de uso</label>
+                          <input type="text" [(ngModel)]="pro.Usageunit" class="form-control"/>
+                        </div>
+                      </div>
+                      <br>
+                      <div class="form-row">
+                        <div class="col">
+                          <button (click)="cancel()" class="btn btn-block btn-outline-danger">Cancelar</button>  
+                        </div>
+                        <div class="col">
+                            <button (click)="createProducto()" class="btn btn-block btn-outline-dark">Añadir</button>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+
+

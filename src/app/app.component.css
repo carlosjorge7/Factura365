@@ -1,0 +1,135 @@
+/*:root{
+    --primary: #111b54;
+    --light: #ffffff;
+    --grey: #efefef;
+}
+
+body{
+    overflow: hidden;
+    font-family: 'Muli', 'sans-serif';
+    font-weight: 300;
+    color: var(--primary);
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
+#sidebar-container{
+    min-height: 100vh;
+}
+
+#sidebar-container .logo{
+    padding: .875rem 1.25rem;
+}
+
+#sidebar-container .menu{
+    width: 18rem;
+}*/
+
+/*
+  STYLES GUIDE:
+  0. RESET
+  1. LAYOUT
+  2. GENERIC ITEMS
+  3. PARTS OF WEB
+  4. LIST
+  5. FORM
+  5. ANIMATIONS
+  ----------
+  COLORS:
+    color1 => #2c3e50;
+    color2 => #34495e;
+    color3 => #3498db;
+    color4 => #fff;
+*/
+
+/* 0 RESET */
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+/*
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}*/
+
+.sidenav {
+    height: 100%;
+    width: 224px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #474b4e ;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .sidenav a {
+    padding: 15px 50px 6px 16px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #818181;
+    display: block;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
+
+#LandingPage{
+    text-align: center;
+    font: 300 20px/1.7 'Roboto Condensed';
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*background: url('../assets/factura365.png') no-repeat center top;*/
+    background-color: #e3f2fd;
+    background-size: cover;
+    height: 450px;
+    margin-top: -120px;
+}
+
+
+#sidebar{
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background: whitesmoke;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+}
+
+
+

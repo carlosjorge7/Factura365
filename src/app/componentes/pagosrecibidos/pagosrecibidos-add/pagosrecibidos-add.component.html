@@ -1,0 +1,71 @@
+<div id="pagosrecibidosadd" *ngIf="log">
+    <style>
+      div.row{
+        margin-bottom: 46px ;
+      }
+    </style>
+    
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+          <br>
+            <div class="card">
+                <div class="card-header" style="text-align: center;">
+                    Nuevo Pago Recibido
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="">ID Organización</label>
+                        <input type="text" #OrganizationID="ngModel" class="form-control" [(ngModel)]="pa.OrganizationID" readonly />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="">Seleccione un Cliente *</label>
+                        <select style="border-radius: 20px;" required name="my-select" [(ngModel)]="mySelectClientes" [(ngModel)]="pa.CustomerID" class="form-control" (change)="selectChangeCliente()">
+                            <option [value]="item.id" *ngFor="let item of clientes">{{item.CustomerName}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Seleccione un número de factura *</label>
+                        <select style="border-radius: 20px;" required name="my-select" [(ngModel)]="mySelectFacturas" [(ngModel)]="pa.InvoiceID" class="form-control" (change)="selectChangeFactura()">
+                            <option [value]="item.id" *ngFor="let item of facturas">{{item.InvoiceNumber}} - {{item.Balance}} € </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Fecha Pago * </label>
+                        <input  type="date" [(ngModel)]="pa.PaymentDate" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Método Pago</label>
+                        <select style="border-radius: 20px;" required name="my-select" [(ngModel)]="mySelectedMetodosPago" [(ngModel)]="pa.PaymentMethodID" class="form-control" (change)="selectChangeMetodoPago()">
+                            <option [value]="item.id" *ngFor="let item of metodospago">{{item.PaymentMethod}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Descripción </label>
+                        <input  type="text" [(ngModel)]="pa.PaymentDescription" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Total * </label>
+                        <input  type="text" [(ngModel)]="pa.PaymentAmount" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Número de referencia</label>
+                        <input  type="text" [(ngModel)]="pa.PaymentReference" class="form-control"/>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <button (click)="cancel()" class="btn btn-block btn-outline-danger">Cancelar</button>  
+                        </div>
+                        <div class="col">
+                            <button (click)="createPagoRecibido()" class="btn btn-block btn-outline-dark">Añadir</button>
+                        </div>
+                    </div>
+               
+                </div>
+            </div>
+        </div>
+    </div>  
+  </div>
+  
+  
+  

@@ -1,0 +1,19 @@
+#pagos{
+    margin-left: 100px; 
+    margin-right: -200px;
+    margin-top: 20px; 
+    max-width: 100%;
+}
+
+input[type=text]{
+    border-radius: 20px;
+}
+
+button{
+    border-radius: 20px;
+}
+
+.btn-ligth{
+    background-color: #e3f2fd;
+    color: black;
+}

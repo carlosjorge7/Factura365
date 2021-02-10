@@ -1,0 +1,83 @@
+<div id="contactosadd" *ngIf="log">
+  <style>
+    div.row{
+      margin-bottom: 46px ;
+    }
+  </style>
+
+  <script type="text/javascript">
+     /*$(document).ready(function() {
+    $('#buscador_select').select2();
+  });*/
+  </script>
+
+  
+  <div class="row">
+      <div class="col-md-8 mx-auto">
+        <br>
+          <div class="card">
+              <div class="card-header" style="text-align: center;">
+                  Nuevo Contacto
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="">ID Organizacion </label>
+                  <input type="text" #OrganizationID="ngModel" class="form-control" [(ngModel)]="con.OrganizationID" readonly />
+                </div>
+                <div class="form-group">
+                  <label for="">Seleccione un Cliente *</label><button (click)="newCliente()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                  <select  id="buscador_select" required style="border-radius: 20px;" name="my-select" [(ngModel)]="mySelect" [(ngModel)]="con.CustomerID" class="form-control" (change)="selectChange()">
+                    <option [value]="item.id" *ngFor="let item of clientes">{{item.CustomerName}}</option>
+                  </select>
+                </div>
+                
+                <div class="form-row">
+                  <div class="col">
+                    <label for="">Nombre *</label>
+                    <input required type="text" [(ngModel)]="con.FirstName" class="form-control" />
+                  </div>
+                  <div class="col">
+                    <label for="">Apellidos</label>
+                    <input type="text" [(ngModel)]="con.LastName" class="form-control" />
+                  </div>
+                </div>
+                <br>
+                <div class="form-row">
+                  <div class="col">
+                    <label for="">Email </label>
+                    <input type="text" [(ngModel)]="con.Email" class="form-control" />
+                  </div>
+                  <div class="col">
+                    <label for="">Teléfono</label>
+                    <input type="text" [(ngModel)]="con.MobilePhone" class="form-control" />
+                  </div>
+                </div>
+                <br>
+                <div class="form-row">
+                  <div class="col">
+                    <label for="">Skype</label>
+                    <input type="text" [(ngModel)]="con.SkypeIdentity" class="form-control" />
+                  </div>
+                  <div class="col">
+                    <label for="">Departamento</label>
+                    <input type="text" [(ngModel)]="con.Department" class="form-control" />
+                  </div>
+                </div>
+                <br>
+                <div class="form-row">
+                  <div class="col">
+                    <button (click)="cancel()" class="btn btn-block btn-outline-danger">Cancelar</button>  
+                  </div>
+                  <div class="col">
+                    <button (click)="createContacto()" class="btn btn-block btn-outline-dark">Añadir</button>
+                  </div>
+                </div>
+              
+              </div>
+          </div>
+      </div>
+  </div>  
+</div>
+
+
+

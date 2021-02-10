@@ -1,0 +1,27 @@
+<div id="organizacionpredet" *ngIf="log">
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <br>
+            <div class="card" style="text-align: center; border-radius: 10px;">
+                <div class="card-header" style="text-align: center; ">
+                    Organización
+                </div>
+                <div class="card-body">
+                    <strong>Organización predeterminada</strong>
+                    <p>{{org.OrganizationName}}</p>
+                    <strong>¿Quieres elegir cambiar de organización?</strong><br><br>
+                    <div class="form-group">
+                        <select required style="border-radius: 20px;" name="my-select" [(ngModel)]="mySelect" class="form-control" (change)="selectChange()">
+                            <option value="">-- Selecciona una Organización</option>
+                            <option [value]="item.id" *ngFor="let item of organizaciones">{{item.OrganizationName}}</option>
+                        </select>
+                    </div>
+                   
+                </div>
+            </div>
+    
+        </div>
+    
+    </div>
+</div>
+

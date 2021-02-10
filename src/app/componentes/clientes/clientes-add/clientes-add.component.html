@@ -1,0 +1,151 @@
+<div id="clientesadd" *ngIf="log">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <br>
+        <div class="card">
+            <div class="card-header" style="text-align: center;">
+                Nuevo Cliente
+            </div>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="">ID Organización</label>
+                <input type="text" #OrganizationID="ngModel" class="form-control" [(ngModel)]="cli.OrganizationID" readonly />
+              </div>
+              <strong>PERSONALES</strong>
+              <div class="form-row">
+                  <div class="col">
+                    <label for="">Nombre fiscal *</label>
+                    <input required type="text" [(ngModel)]="cli.CustomerName" class="form-control" />
+                  </div>
+                  <div class="col">
+                    <label for="">Nombre comercial </label>
+                    <input type="text" [(ngModel)]="cli.DisplayName" class="form-control" />
+                  </div>
+              </div>
+              <br>
+              <div class="form-row">
+                  <div class="col">
+                    <label for="">CIF/NIF</label>
+                    <input type="text" [(ngModel)]="cli.IdFiscal" class="form-control" />
+                  </div>
+                  <div class="col">
+                    <label for="">Email </label>
+                    <input type="email" [(ngModel)]="cli.Email" class="form-control" />
+                  </div>
+                  <div class="col">
+                    <label for="">Teléfono</label>
+                    <input type="text" [(ngModel)]="cli.Phone" class="form-control" />
+                  </div>
+              </div>
+              <br>
+              <strong>CONDICIONES</strong>
+              <div class="form-row">
+                  <div class="col">
+                    <label for="">Límite de Crédito</label>
+                    <input type="text" [(ngModel)]="cli.CreditLimit" class="form-control" />
+                  </div>
+                  <div class="col">
+                    <label for="">Días de pago </label><button (click)="newTermino()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                    <select style="border-radius: 20px;" name="my-select" [(ngModel)]="mySelect" class="form-control" (change)="selectChange()">
+                        <option [value]="item.id" *ngFor="let item of terminos">{{item.TermDays}} - {{ item.TermName }}</option>
+                    </select>
+                  </div>
+              </div>
+              <br>
+              <div class="form-row">
+                  <div class="col">
+                    <label for="">Moneda</label>
+                    <select style="border-radius: 20px;"  class="form-control" [(ngModel)]="cli.CurrencyCode">
+                        <option [value]="item.CurrencyCode" *ngFor="let item of monedas">{{item.CurrencyCode}} - {{ item.CurrencyName }} </option>
+                    </select>
+                  </div>
+                  <div class="col">
+                    <label for="">Notas</label>
+                    <input type="text" [(ngModel)]="cli.CustomerNotes" class="form-control" />
+                  </div>
+                  <div class="col">
+                    <label for="">Web</label>
+                    <input type="url" [(ngModel)]="cli.Website" class="form-control" />
+                  </div>
+              </div>
+              <br>
+              <strong>Facturación</strong>
+              <div class="form-row">
+                <div class="col">
+                  <label for="">Dirección</label>
+                  <input type="text" [(ngModel)]="cli.BillingAddress" class="form-control"/>
+                </div>
+                <div class="col">
+                  <label for="">Dirección auxiliar</label>
+                  <input type="text" [(ngModel)]="cli.BillingStreet2" class="form-control" />
+                </div>
+                <div class="col">
+                  <label for="">Ciudad </label>
+                  <input  type="text" [(ngModel)]="cli.BillingCity" class="form-control"/>
+                </div>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col">
+                  <label for="">Estado</label>
+                  <input type="text" [(ngModel)]="cli.BillingState" class="form-control" />
+                </div>
+                <div class="col">
+                  <label for="">Selecciona un País</label>
+                  <select style="border-radius: 20px;"  class="form-control" [(ngModel)]="cli.BillingCountryIso">
+                      <option [value]="item.Iso" *ngFor="let item of paises">{{item.Iso}} - {{ item.Name }} </option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="">Código</label>
+                  <input type="text" [(ngModel)]="cli.BillingCode" class="form-control sm" />
+                </div>
+              </div>
+              <br>
+              <strong>Envío</strong>
+              <div class="form-row">
+                <div class="col">
+                  <label for="">Dirección</label>
+                  <input type="text" [(ngModel)]="cli.ShippingAddress" class="form-control"/>
+                </div>
+                <div class="col">
+                  <label for="">Dirección auxiliar</label>
+                  <input type="text" [(ngModel)]="cli.ShippingStreet2" class="form-control" />
+                </div>
+                <div class="col">
+                  <label for="">Ciudad </label>
+                  <input  type="text" [(ngModel)]="cli.ShippingCity" class="form-control"/>
+                </div>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col">
+                  <label for="">Estado</label>
+                  <input type="text" [(ngModel)]="cli.ShippingState" class="form-control" />
+                </div>
+                <div class="col">
+                  <label for="">Selecciona un País</label>
+                  <select style="border-radius: 20px;"  class="form-control" [(ngModel)]="cli.ShippingCountryIso">
+                      <option [value]="item.Iso" *ngFor="let item of paises">{{item.Iso}} - {{ item.Name }} </option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="">Código</label>
+                <input type="text" [(ngModel)]="cli.ShippingCode" class="form-control sm" />
+                </div>
+              </div>
+              <br>
+              <div class="form-row">
+                <div class="col">
+                  <button (click)="cancel()" class="btn btn-block btn-outline-danger">Cancelar</button>  
+                </div>
+                <div class="col">
+                  <button (click)="createCliente()" class="btn btn-block btn-outline-dark">Añadir</button>
+                </div>
+              </div>
+        
+            </div>
+        </div>
+    </div>
+</div>  
+</div>

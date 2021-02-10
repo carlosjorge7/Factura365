@@ -26,7 +26,8 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {
@@ -90,7 +91,8 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           }
         },
         "lint": {
@@ -119,6 +121,13 @@
           }
         }
       }
-    }},
-  "defaultProject": "FacturaTE"
+    }
+  },
+  "defaultProject": "FacturaTE",
+  "cli": {
+    "analytics": false
+    
+  }
+
+
 }

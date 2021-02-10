@@ -1,0 +1,65 @@
+<div id="recurrentecabecera" *ngIf="log">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <br>
+            <div class="card">
+                <div class="card-header" style="text-align: center;">
+                    Cabecera Recurrente
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="">ID Organización</label>
+                        <input type="text" #OrganizationID="ngModel" class="form-control" [(ngModel)]="re.OrganizationID" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="">ID Factura *</label>
+                        <input required type="text" [(ngModel)]="re.InvoiceID" class="form-control" />
+                       
+                        <!--<div class="col">
+                          <label for="">Recurrente Codigo </label>
+                          <input  type="text" [(ngModel)]="re.RecurringTypeCode" class="form-control"/>
+                        </div> EL CODIGO VA INTERNO-->
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nombre perfil recurrente *</label>
+                        <input type="text" [(ngModel)]="re.RecurringName"  class="form-control"/>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">Fecha inicio * </label>
+                            <input type="datetime" [(ngModel)]="re.StartDate"  class="form-control"/>
+                          </div>
+                        <div class="col">
+                          <label for="">Fecha final </label>
+                          <input type="date" [(ngModel)]="re.EndDate"  class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">Repetir cada * </label>
+                            <input type="datetime" [(ngModel)]="re.RepeatEvery" class="form-control"/>
+                        </div>
+                        <div class="col">
+                            <!--<select style="border-radius: 20px;" class="form-control" [(ngModel)]="re.Frecuency">
+                                <option [value]="item.Frecuency" *ngFor="let item of frecuencias">{{item.Frecuency}}</option>
+                            </select>-->
+                            <label for="">A/M/S/D</label>
+                            <input type="text" [(ngModel)]="re.Frecuency" class="form-control"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Días de pago </label><button (click)="newTermino()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                        <select style="border-radius: 20px;" name="my-select" [(ngModel)]="mySelect" class="form-control" (change)="selectChange()">
+                            <option [value]="item.id" *ngFor="let item of terminos">{{item.TermDays}} - {{ item.TermName }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button (click)="createRecurrente()" class="btn btn-block btn-outline-dark">Añadir</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+
+

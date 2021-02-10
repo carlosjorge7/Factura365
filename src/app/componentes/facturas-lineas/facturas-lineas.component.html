@@ -1,0 +1,87 @@
+<div id="facturaslin" *ngIf="log">
+    <style>
+        div.row{
+          margin-bottom: 345px ;
+        }
+    </style>
+    
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <br>
+            <div class="card">
+                <div class="card-header" style="text-align: center;">
+                    Nueva Línea
+                </div>
+                <div class="card-body">
+
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">ID Factura</label>
+                            <input type="text" #InvoiceID="ngModel" class="form-control" [(ngModel)]="lin.InvoiceID" readonly />
+                        </div>
+                        <div class="col">
+                            <label for="">Número Factura</label>
+                            <input type="text" #InvoiceNumber="ngModel" class="form-control" [(ngModel)]="lin.InvoiceNumber" readonly />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Producto</label><button (click)="newProducto()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                        <select  style="border-radius: 20px;" name="my-select" [(ngModel)]="mySelect" class="form-control" (change)="selectChange()">
+                            <option  [value]="item.id" *ngFor="let item of productos">{{item.ProductName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">Descripción</label>
+                            <input type="text" [(ngModel)]="lin.ProductDescription"  class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Cantidad</label>
+                            <input type="text" [(ngModel)]="lin.Quantity"  class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Precio</label>
+                            <input type="text" [(ngModel)]="lin.ProductPrice"  class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Descuento</label>
+                            <input type="text" [(ngModel)]="lin.Discount"  class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">IVA</label><button (click)="newImpuesto()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                            <select style="border-radius: 20px;" name="my-select" [(ngModel)]="myPercentaje" class="form-control" (change)="selectPercentage()">
+                                <option [value]="item.id" *ngFor="let item of impuestos">{{item.id}} - {{item.TaxName}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="">IRPF</label><button (click)="newImpuesto()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                            <select style="border-radius: 20px;" name="my-select1" [(ngModel)]="myPercentaje1" class="form-control" (change)="selectPercentage1()">
+                              <option [value]="item.id" *ngFor="let item of impuestos1">{{item.id}} - {{item.TaxName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Importe</label>
+                        <input type="text" #ProductTotal="ngModel" class="form-control" [(ngModel)]="lin.ProductTotal" readonly />
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <button (click)="calcel()" class="btn btn-block btn-outline-danger">Cancelar</button>  
+                        </div>
+                        <div class="col">
+                            <button (click)="createFacturaLinea()" class="btn btn-block btn-outline-dark">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+</div>
+
+

@@ -1,0 +1,48 @@
+<div id="categoriasadd" *ngIf="log">
+    <style>
+        div.row{
+          margin-bottom: 345px ;
+        }
+    </style>
+    
+    <div class="row">
+        <div class="col-md-5 mx-auto">
+            <br>
+            <div class="card">
+                <div class="card-header" style="text-align: center;">
+                    Nueva Categoria
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="">ID Organización</label>
+                        <input type="text" #OrganizationID="ngModel" class="form-control" [(ngModel)]="categ.OrganizationID" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nombre *</label>
+                        <input required type="text" [(ngModel)]="categ.CategoryName"  class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for=""> Categoría Padre</label>
+                          <select style="border-radius: 20px;" name="my-select" [(ngModel)]="mySelect" class="form-control" (change)="selectChange()">
+                            <option [value]="">-- Selecciona una Categoría Padre</option>
+                              <option [value]="item.id" *ngFor="let item of categorias_padre">{{item.CategoryName}}</option>
+                          </select>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                          <button (click)="cancel()" class="btn btn-block btn-outline-danger">Cancelar</button>  
+                        </div>
+                        <div class="col">
+                            <button (click)="createCategoria()" class="btn btn-block btn-outline-dark">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+</div>
+
+
+
+

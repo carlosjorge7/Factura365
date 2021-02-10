@@ -1,0 +1,41 @@
+<div style="margin-left: 119px; margin-right: -100px; margin-top: 20px; max-width: 100%;" *ngIf="log">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <br>
+  
+        <div class="card">
+          <div class="card-header" style="text-align: center;">
+            Cuenta de usuario
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="">Nombre *</label>
+              <input required type="text" [(ngModel)]="us.UsuarioName" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="">Apellidos *</label>
+              <input required type="text" [(ngModel)]="us.UsuarioLastName" class="form-control" />
+            </div>
+            <div class="form-group">
+              <label for="">Email</label>
+              <input type="email" #Email="ngModel" class="form-control" [(ngModel)]="us.Email" readonly />
+            </div>
+
+            <div class="form-row">
+              <div class="col">
+                <button (click)="eliminarCuenta()" class="btn btn-block btn-outline-danger"> Eliminar Cuenta</button>
+              </div>
+              <div class="col">
+                <button (click)="updateUser()" class="btn btn-block btn-outline-dark"> Guardar Cambios</button>
+              </div>
+            </div>
+
+         
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  
+    <router-outlet></router-outlet>
+  </div>

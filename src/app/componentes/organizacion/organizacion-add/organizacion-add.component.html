@@ -1,0 +1,153 @@
+<div id="organizacionadd" *ngIf="log">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <br>
+            <div class="card">
+                <div class="card-header" style="text-align: center;">
+                    Nueva Organización
+                </div>
+                <div class="card-body">
+                    <strong>GENERALES</strong>
+                    <div class="form-group">
+                        <label for="">ID Usuario</label>
+                        <input type="text" #UsuarioID="ngModel" class="form-control" [(ngModel)]="org.UsuarioID" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nombre de la Organización *</label>
+                        <input required type="text" [(ngModel)]="org.OrganizationName" class="form-control" />
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col">
+                            <label>Selecciona una moneda</label>
+                            <select style="border-radius: 20px;" class="form-control" [(ngModel)]="org.CurrencyCode">
+                                <option value="">-- Selecciona una moneda</option>
+                                <option [value]="item.CurrencyCode" *ngFor="let item of monedas">{{item.CurrencyCode}} - {{ item.CurrencyName }} </option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label>Moneda 2</label>
+                            <input type="text" [(ngModel)]="org.CountryIso" class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Selecciona un País</label>
+                        <select style="border-radius: 20px;"  class="form-control" [(ngModel)]="org.LanguageIso">
+                          <option value="">-- Selecciona un País </option>
+                            <option [value]="item.Iso" *ngFor="let item of paises">{{item.Iso}} - {{ item.Name }} </option>
+                        </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">Dirección de la Empresa</label>
+                            <input  type="text" [(ngModel)]="org.Address" class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Dirección auxiliar</label>
+                            <input type="text" [(ngModel)]="org.Street2" class="form-control" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">Ciudad </label>
+                            <input  type="text" [(ngModel)]="org.City" class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Población </label>
+                            <input  type="text" [(ngModel)]="org.State" class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Código Postal</label>
+                            <input  type="text" [(ngModel)]="org.PostalCode" class="form-control" />
+                        </div>
+                    </div>
+                    <br>
+                    <strong>FISCALES Y SERIES</strong>
+
+                    <div class="form-group">
+                        <label for="">CIF </label>
+                        <input  type="text" [(ngModel)]="org.OrganizationIdFiscal" class="form-control" />
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">Serie de Facturas </label>
+                            <input type="text" #InvoiceRoot="ngModel" class="form-control" [(ngModel)]="org.InvoiceRoot" />
+                        </div>
+                        <div class="col">
+                            <label for="">Último número de facturas</label>
+                            <input type="text" #InvoiceLastNumber="ngModel" class="form-control" [(ngModel)]="org.InvoiceLastNumber" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">Serie de Presupuestos </label>
+                            <input type="text" #EstimateRoot="ngModel" class="form-control" [(ngModel)]="org.EstimateRoot" />
+                        </div>
+                        <div class="col">
+                            <label for="">Último número de presupuestos</label>
+                            <input type="text" #EstimateLastNumber="ngModel" class="form-control" [(ngModel)]="org.EstimateLastNumber" />
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">Serie de Abonos</label>
+                            <input type="text" #CreditRoot="ngModel" class="form-control" [(ngModel)]="org.CreditRoot" />
+                        </div>
+                        <div class="col">
+                            <label for="">Último número de abonos</label>
+                            <input type="text" #CreditLastNumber="ngModel" class="form-control" [(ngModel)]="org.CreditLastNumber" />
+                        </div>
+                    </div>
+                    <br>
+                    <strong>BANCARIOS</strong>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">IBAN</label>
+                            <input type="text" [(ngModel)]="org.OrganizationIBAN" class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Banco</label>
+                            <input type="text" [(ngModel)]="org.OrganizationBank" class="form-control" />
+                        </div>
+                    </div>
+                    <br>
+                    <strong>LEGAL</strong>
+                    <div class="form-group">
+                        <label for="">Términos y condiciones</label>
+                        <textarea type="text" #TermsConditionsInvoice="ngModel" class="form-control" [(ngModel)]="org.TermsConditionsInvoice" readonly></textarea>
+                    </div>
+                    <strong>LOGOTIPO</strong><br>
+                    <div class="form-group">
+                        <input type="file" accept="image/*" (change)="seleccionarArchivo($event)" [(ngModel)]="org.LogoUrl"><br><br>
+                        <button class="btn btn-ligth" (click)="upload()">Subir</button>
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col">
+                          <button (click)="cancel()" class="btn btn-block btn-outline-danger">Cancelar</button>  
+                        </div>
+                        <div class="col">
+                            <button (click)="createOrganizacion()" class="btn btn-block btn-outline-dark">Añadir</button>
+                        </div>
+                    </div>
+                </div>
+                <!--<form (ngSubmit)="upload()">
+                        <label for="">Imagen Organizacion</label>
+                        <input type="text" [(ngModel)]="org.LogoUrl" name="file"/>
+                        <br><br>
+                        <input type="file" accept="image/*" (change)="seleccionarArchivo($event)">
+                        <br><br>
+                        <button>Subir</button>
+                </form>-->
+            </div>
+        </div>
+    </div>  
+    
+</div>
+
+

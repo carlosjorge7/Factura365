@@ -1,0 +1,43 @@
+<style>
+    div.row {
+        margin-bottom: 229px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-md-5 mx-auto">
+        <div class="card" style="border-radius: 10px;">
+            <div class="card-header" style="text-align: center;">
+                Registro
+            </div>
+            <img src="assets/user-add.png" alt="Registro" class="card-img-top mx-auto m-2 rounded-circle w-50">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="">Nombre de la Organización *</label>
+                    <input style="border-radius: 20px;" type="text" [(ngModel)]="usr.OrganizationName" class="form-control" required />
+                  </div>
+                <div class="form-group">
+                    <label for="">Nombre *</label>
+                  <input style="border-radius: 20px;" type="text" [(ngModel)]="usr.UsuarioName" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                    <label for="">Apellido(s) *</label>
+                    <input style="border-radius: 20px;" type="text" [(ngModel)]="usr.UsuarioLastName" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="">Email *</label>
+                    <input style="border-radius: 20px;" type="email" [(ngModel)]="usr.Email" class="form-control" required/>
+                </div>
+                <div class="form-group">
+                    <label for="">Contraseña *</label>
+                    <input required style="border-radius: 20px;" type="password" [(ngModel)]="usr.Password" class="form-control" minlength="8" />
+                </div>
+                <!-- Contemplar poner la opcion de repetir contraseña-->
+                <button style="border-radius: 20px;" (click)="register()" class="btn btn-block btn-outline-dark">Registrar</button>
+              </div>
+            
+        </div>
+    </div>
+</div>  
+
+

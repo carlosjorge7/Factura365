@@ -1,0 +1,47 @@
+<div id="usuorgadd" *ngIf="log">
+    <style>
+      div.row{
+        margin-bottom: 46px ;
+      }
+    </style>
+    
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+          <br>
+            <div class="card">
+                <div class="card-header" style="text-align: center;">
+                    Nuevo usuario y permiso
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="">Email nuevo usuario * </label>
+                        <input required type="text" [(ngModel)]="uo.Email" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" #OrganizationID="ngModel" class="form-control" [(ngModel)]="uo.OrganizationID" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tipo de permiso</label>
+                        <select style="border-radius: 20px;"  class="form-control" [(ngModel)]="uo.Usuario_OrganizationRoleCode">
+                        <option value="">-- Selecciona un permiso </option>
+                            <option [value]="item.RoleCode" *ngFor="let item of roles">{{ item.RoleName }} </option>
+                        </select>
+                    </div>
+                <div class="form-row">
+                  <div class="col">
+                    <button (click)="cancel()" class="btn btn-block btn-outline-danger">Cancelar</button>  
+                  </div>
+                  <div class="col">
+                    <button (click)="createUsuorg()" class="btn btn-block btn-outline-dark">Enviar invitación</button>
+                  </div>
+                </div>
+              
+                </div>
+            </div>
+        </div>
+    </div>  
+  </div>
+  
+  
+  
+  

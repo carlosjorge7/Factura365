@@ -1,0 +1,36 @@
+
+#presupuestosadd{
+    margin-left: 100px; 
+    margin-right: -200px;
+    margin-top: 20px; 
+    max-width: 100%;
+}
+
+div.row {
+    margin-bottom: 46px ;
+}
+
+select.form-control{
+    border-radius: 20px;
+}
+
+div.card{
+    border-radius: 10px;
+}
+
+input[type=text]{
+    border-radius: 20px;
+}
+
+input[type=date]{
+    border-radius: 20px;
+}
+
+
+input[type=datetime]{
+    border-radius: 20px;
+}
+
+button{
+    border-radius: 20px;
+}

@@ -1,0 +1,245 @@
+<div id="recurrentesadd" *ngIf="log">
+    <div *ngIf="!updLin">
+
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+          <br>
+            <div class="card">
+                <div class="card-header" style="text-align: center;">
+                    Nueva Factura
+                </div>
+
+                <button (click)="nuevaRecurrente()" class="btn btn-outline-primary"><i class="fas fa-plus-circle"></i> Cabecera Recurrente</button>
+                <br><br>
+                <div class="table-responsive">
+                    <table class="table table-hover" *ngIf="hayRegistros()">
+                        <thead>
+                            <tr>
+                            <td><strong>Nombre perfil recurrente</strong></td>
+                            <td><strong>Fecha inicio</strong></td>
+                            <td><strong>Fecha final</strong></td>
+                            <td><strong>Repetir cada</strong></td>
+                            <td><strong>Días de pago</strong></td>
+                            <td><strong>Editar</strong></td>
+                            <td><strong>Borrar</strong></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let re of recurrentes">
+                            <td>{{re.RecurringName}}</td>
+                            <td>{{re.StartDate}} </td>
+                            <td>{{re.EndDate}} </td>
+                            <td>{{re.RepeatEvery}} </td>
+                            <td>{{re.TermDays}} </td>
+                            <td><button (click)="getRecurrente(re.RecurringID)" style="color: teal;" class="btn btn-white"><i class="fas fa-marker"></i></button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+           
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="">Seleccione un Cliente *</label><button (click)="newCliente()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                    <select required name="my-select" [(ngModel)]="mySelect" [(ngModel)]="fac.CustomerID" class="form-control" (change)="selectChange()">
+                        <option [value]="item.id" *ngFor="let item of clientes">{{item.CustomerName}}</option>
+                    </select>
+                  </div>
+            
+
+                <div class="form-row">
+                    <div class="col">
+                        <label for="">OrganizationID</label>
+                        <input type="text" #OrganizationID="ngModel" class="form-control" [(ngModel)]="fac.OrganizationID" readonly />
+                    </div>
+                    <div class="col">
+                        <label for="">Número Factura</label>
+                        <input type="text" [(ngModel)]="fac.InvoiceNumber" class="form-control" readonly />
+                    </div>
+                    <div class="col">
+                        <label for="">Fecha</label>
+                        <input type="datetime" [(ngModel)]="fac.InvoiceDate" class="form-control" />
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="">Fecha Vencimiento</label>
+                        <input type="date" [(ngModel)]="fac.DueDate" class="form-control" />
+                    </div>
+                    <div class="col">
+                        <label for="">P.O Referencia</label>
+                        <input type="text" [(ngModel)]="fac.PurchaseOrder" class="form-control" />
+                    </div>
+                </div>
+                <br>
+                <button (click)="flagger()" class="btn btn-outline-dark"><i  class="fas fa-plus-circle"></i> Añadir Línea</button>
+                <br><br>
+                <div class="table-responsive">
+                    <table class="table table-hover" *ngIf="hayRegistros()">
+                        <thead>
+                            <tr>
+                            <td><strong>Producto/Servicio</strong></td>
+                            <td><strong>Descripción</strong></td>
+                            <td><strong>Cantidad</strong></td>
+                            <td><strong>Precio</strong></td>
+                            <td><strong>% Dcto</strong></td>
+                            <td><strong>% IVA</strong></td>
+                            <td><strong>% IRPF</strong></td>
+                            <td><strong>Importe</strong></td>
+                            <td><strong>Editar</strong></td>
+                            <td><strong>Borrar</strong></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let lin of lineas">
+                            <td>{{lin.ProductName}}</td>
+                            <td>{{lin.ProductDescription}} </td>
+                            <td>{{lin.Quantity}} </td>
+                            <td>{{lin.ProductPrice}} </td>
+                            <td>{{lin.Discount}} </td>
+                            <td>{{lin.ProductTax1Rate}} </td>
+                            <td>{{lin.ProductTax2Rate}} </td>
+                            <td>{{lin.ProductTotal}} </td>
+                            <td><button (click)="getFacturaLinea(lin.Invoice_LineID)" style="color: teal;" class="btn btn-white"><i class="fas fa-marker"></i></button></td>
+                            <td><button (click)="deleteFacturaLinea(lin.Invoice_LineID)" style="color: brown;" class="btn btn-white" ><i class="fas fa-trash-alt"></i></button></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+               
+                <div class="form-row">
+                    <div class="col">
+                        <label for="">Notas</label>
+                        <input type="text" [(ngModel)]="fac.Notes" class="form-control" />
+                    </div>
+                    <div class="col">
+                        <label for="">Términos y condiciones</label>
+                        <textarea type="text" #TermsConditions="ngModel" class="form-control" [(ngModel)]="fac.TermsConditions" readonly></textarea>
+                    </div>
+                </div>
+                <br>
+            
+                <div class="form-row">
+                    <div class="col">
+                        <label for="">Descuento</label>
+                        <input type="text" #Discount="ngModel" class="form-control" [(ngModel)]="fac.Discount" readonly />
+                    </div>
+                    <div class="col">
+                        <label for="">Base imponible</label>
+                        <input type="text" #SubTotal="ngModel" class="form-control" [(ngModel)]="fac.SubTotal" readonly />
+                    </div>
+                    <div class="col">
+                        <label for="">IVA</label>
+                        <input type="text" #IVA="ngModel" class="form-control" [(ngModel)]="fac.IVA" readonly />
+                    </div>
+                    <div class="col">
+                        <label for="">IRPF</label>
+                        <input type="text" #IRPF="ngModel" class="form-control" [(ngModel)]="fac.IRPF" readonly />
+                    </div>
+                    <div class="col">
+                        <label for="">Total</label>
+                        <input type="text" #Total="ngModel" class="form-control" [(ngModel)]="fac.Total" readonly />
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                  <div class="col">
+                    <button (click)="cancel()"  class="btn btn-block btn-outline-danger">Cancelar</button>  
+                  </div>
+                  <div class="col">
+                    <button (click)="createFactura()" class="btn btn-block btn-outline-dark">Grabar Recurrente</button>
+                  </div>
+                </div>
+              
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+
+
+<div *ngIf="updLin">
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <br>
+            <div class="card">
+                <div class="card-header" style="text-align: center;">
+                    Actualizar Línea
+                </div>
+                <div class="card-body">
+
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">ID Factura</label>
+                            <input type="text" #InvoiceID="ngModel" class="form-control" [(ngModel)]="lin.InvoiceID" readonly />
+                        </div>
+                        <div class="col">
+                            <label for="">Número Factura</label>
+                            <input type="text" #InvoiceNumber="ngModel" class="form-control" [(ngModel)]="lin.InvoiceNumber" readonly />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Producto</label><button (click)="newProducto()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                        <select  style="border-radius: 20px;" name="my-select" [(ngModel)]="mySelect1" class="form-control" (change)="selectChange1()">
+                            <option [value]="item.id" *ngFor="let item of productos">{{item.ProductName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">Descripción</label>
+                            <input type="text" [(ngModel)]="lin.ProductDescription"  class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Cantidad</label>
+                            <input type="text" [(ngModel)]="lin.Quantity"  class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Precio</label>
+                            <input type="text" [(ngModel)]="lin.ProductPrice"  class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Descuento</label>
+                            <input type="text" [(ngModel)]="lin.Discount"  class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">IVA</label><button (click)="newImpuesto()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                            <select style="border-radius: 20px;" name="my-select" [(ngModel)]="myPercentaje" class="form-control" (change)="selectPercentage()">
+                                <option [value]="item.id" *ngFor="let item of impuestos">{{item.id}} - {{item.TaxName}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="">IRPF</label><button (click)="newImpuesto()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                            <select style="border-radius: 20px;" name="my-select1" [(ngModel)]="myPercentaje1" class="form-control" (change)="selectPercentage1()">
+                              <option [value]="item.id" *ngFor="let item of impuestos1">{{item.id}} - {{item.TaxName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Importe</label>
+                        <input type="text" #ProductTotal="ngModel" class="form-control" [(ngModel)]="lin.ProductTotal" readonly />
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <button (click)="updateFacturaLinea()" class="btn btn-block btn-outline-dark">Actualizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+</div>
+
+</div>
+
+
+
+
+
+

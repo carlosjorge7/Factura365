@@ -1,0 +1,17 @@
+input[type=text]{
+    border-radius: 20px;
+}
+
+input[type=email]{
+    border-radius: 20px;
+}
+
+button{
+    border-radius: 20px;
+}
+
+div.card{
+    border-radius: 10px;
+}
+
+

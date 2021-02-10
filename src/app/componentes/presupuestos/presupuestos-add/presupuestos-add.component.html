@@ -1,0 +1,219 @@
+<div id="presupuestosadd" *ngIf="log">
+    <div *ngIf="!updLin">
+
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+          <br>
+            <div class="card">
+                <div class="card-header" style="text-align: center;">
+                    Nuevo Presupuesto
+                </div>
+           
+                <div class="card-body">
+                    <button style="margin-left: 450px;" (click)="flagger()" class="btn btn-outline-dark"><i  class="fas fa-plus-circle"></i> Añadir Línea</button>
+                    <br><br>
+                    <div class="table-responsive">
+                        <table class="table table-hover" *ngIf="hayRegistros()">
+                            <thead>
+                                <tr>
+                                <td><strong>Producto/Servicio</strong></td>
+                                <td><strong>Descripción</strong></td>
+                                <td><strong>Cantidad</strong></td>
+                                <td><strong>Precio</strong></td>
+                                <td><strong>% Dcto</strong></td>
+                                <td><strong>% IVA</strong></td>
+                                <td><strong>% IRPF</strong></td>
+                                <td><strong>Importe</strong></td>
+                                <td><strong>Editar</strong></td>
+                                <td><strong>Borrar</strong></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let lin of lineas">
+                                <td>{{lin.ProductName}}</td>
+                                <td>{{lin.ProductDescription}} </td>
+                                <td>{{lin.Quantity}} </td>
+                                <td>{{lin.ProductPrice}} </td>
+                                <td>{{lin.Discount}} </td>
+                                <td>{{lin.ProductTax1Rate}} </td>
+                                <td>{{lin.ProductTax2Rate}} </td>
+                                <td>{{lin.ProductTotal}} </td>
+                                <td><button (click)="getPresupuestoLinea(lin.Estimate_LineID)" style="color: teal;" class="btn btn-white"><i class="fas fa-marker"></i></button></td>
+                                <td><button (click)="deletePresupuestoLinea(lin.Estimate_LineID)" style="color: brown;" class="btn btn-white" ><i class="fas fa-trash-alt"></i></button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br *ngIf="lineas.length==0">
+                        <div style="margin-left: 350px; margin-right: 350px;" class="alert alert-info" *ngIf="lineas.length==0" role="alert">
+                          No hay lineas. Crea una!<button class="btn" (click)="flagger()"><i class="fas fa-plus-circle"></i></button>
+                        </div>
+                    </div>
+                    <br>
+                  <div class="form-group">
+                    <label for="">Seleccione un Cliente *</label><button (click)="newCliente()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                    <select required name="my-select" [(ngModel)]="mySelect" [(ngModel)]="pre.CustomerID" class="form-control" (change)="selectChange()">
+                        <option [value]="item.id" *ngFor="let item of clientes">{{item.CustomerName}}</option>
+                    </select>
+                  </div>
+                  
+                <div class="form-row">
+                    <div class="col">
+                        <label for="">OrganizationID</label>
+                        <input type="text" #OrganizationID="ngModel" class="form-control" [(ngModel)]="pre.OrganizationID" readonly />
+                    </div>
+                    <div class="col">
+                        <label for="">Número Presupuesto</label>
+                        <input type="text" [(ngModel)]="pre.EstimateNumber" class="form-control" readonly />
+                    </div>
+                    <div class="col">
+                        <label for="">Fecha</label>
+                        <input type="datetime" [(ngModel)]="pre.EstimateDate" class="form-control" />
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <div class="col">
+                        <label for="">Fecha Vencimiento</label>
+                        <input type="date" [(ngModel)]="pre.DueDate" class="form-control" />
+                    </div>
+                    <div class="col">
+                        <label for="">P.O Referencia</label>
+                        <input type="text" [(ngModel)]="pre.PurchaseOrder" class="form-control" />
+                    </div>
+                </div>
+                <br>
+              
+                <div class="form-row">
+                    <div class="col">
+                        <label for="">Notas</label>
+                        <input type="text" [(ngModel)]="pre.Notes" class="form-control" />
+                    </div>
+                    <div class="col">
+                        <label for="">Términos y condiciones</label>
+                        <textarea type="text" #TermsConditions="ngModel" class="form-control" [(ngModel)]="pre.TermsConditions" readonly></textarea>
+                    </div>
+                </div>
+                <br>
+            
+                <div class="form-row">
+                    <div class="col">
+                        <label for="">Descuento</label>
+                        <input type="text" #Discount="ngModel" class="form-control" [(ngModel)]="pre.Discount" readonly />
+                    </div>
+                    <div class="col">
+                        <label for="">Base imponible</label>
+                        <input type="text" #SubTotal="ngModel" class="form-control" [(ngModel)]="pre.SubTotal" readonly />
+                    </div>
+                    <div class="col">
+                        <label for="">IVA</label>
+                        <input type="text" #IVA="ngModel" class="form-control" [(ngModel)]="pre.IVA" readonly />
+                    </div>
+                    <div class="col">
+                        <label for="">IRPF</label>
+                        <input type="text" #IRPF="ngModel" class="form-control" [(ngModel)]="pre.IRPF" readonly />
+                    </div>
+                    <div class="col">
+                        <label for="">Total</label>
+                        <input type="text" #Total="ngModel" class="form-control" [(ngModel)]="pre.Total" readonly />
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                  <div class="col">
+                    <button (click)="cancel()"  class="btn btn-block btn-outline-danger">Cancelar</button>  
+                  </div>
+                  <div class="col">
+                    <button (click)="createPresupuesto()" class="btn btn-block btn-outline-dark">Grabar Presupuesto</button>
+                  </div>
+                </div>
+              
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+
+
+<div *ngIf="updLin">
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <br>
+            <div class="card">
+                <div class="card-header" style="text-align: center;">
+                    Actualizar Línea
+                </div>
+                <div class="card-body">
+
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">ID Presupuesto</label>
+                            <input type="text" #EstimateID="ngModel" class="form-control" [(ngModel)]="lin.EstimateID" readonly />
+                        </div>
+                        <div class="col">
+                            <label for="">Número Presupuesto</label>
+                            <input type="text" #EstimateNumber="ngModel" class="form-control" [(ngModel)]="lin.EstimateNumber" readonly />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Producto</label><button (click)="newProducto()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                        <select  style="border-radius: 20px;" name="my-select" [(ngModel)]="mySelect1" class="form-control" (change)="selectChange1()">
+                            <option [value]="item.id" *ngFor="let item of productos">{{item.ProductName}}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">Descripción</label>
+                            <input type="text" [(ngModel)]="lin.ProductDescription"  class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Cantidad</label>
+                            <input type="text" [(ngModel)]="lin.Quantity"  class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Precio</label>
+                            <input type="text" [(ngModel)]="lin.ProductPrice"  class="form-control" />
+                        </div>
+                        <div class="col">
+                            <label for="">Descuento</label>
+                            <input type="text" [(ngModel)]="lin.Discount"  class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="">IVA</label><button (click)="newImpuesto()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                            <select style="border-radius: 20px;" name="my-select" [(ngModel)]="myPercentaje" class="form-control" (change)="selectPercentage()">
+                                <option [value]="item.id" *ngFor="let item of impuestos">{{item.id}} - {{item.TaxName}}</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="">IRPF</label><button (click)="newImpuesto()" class="btn"><i class="fas fa-plus-circle" style="color: #7bbff0;"></i></button>
+                            <select style="border-radius: 20px;" name="my-select1" [(ngModel)]="myPercentaje1" class="form-control" (change)="selectPercentage1()">
+                              <option [value]="item.id" *ngFor="let item of impuestos1">{{item.id}} - {{item.TaxName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Importe</label>
+                        <input type="text" #ProductTotal="ngModel" class="form-control" [(ngModel)]="lin.ProductTotal" readonly />
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <button (click)="updatePresupuestoLinea()" class="btn btn-block btn-outline-dark">Actualizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
+</div>
+
+</div>
+
+
+
+
+
+
